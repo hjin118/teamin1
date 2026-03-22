@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공부방 회원 관리</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 공부방 회원 관리 시스템</h1>
+        </header>
+
+        <section class="dashboard-section card">
+            <h2>📊 관리자 대시보드</h2>
+            <div class="dashboard-stats">
+                <div class="stat-card total-members">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="totalMembers">0</div>
+                        <div class="stat-label">총 회원 수</div>
+                    </div>
+                </div>
+                <div class="stat-card average-attendance">
+                    <div class="stat-icon">📈</div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="avgAttendance">0%</div>
+                        <div class="stat-label">평균 출석률</div>
+                    </div>
+                </div>
+                <div class="stat-card unpaid-members">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="unpaidMembers">0</div>
+                        <div class="stat-label">미납 회원</div>
+                    </div>
+                </div>
+                <div class="stat-card total-consultations">
+                    <div class="stat-icon">💬</div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="totalConsultations">0</div>
+                        <div class="stat-label">총 상담 수</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-charts">
+                <div class="chart-container">
+                    <h3>반별 인원</h3>
+                    <canvas id="courseChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>출결 현황</h3>
+                    <canvas id="attendanceChart"></canvas>
+                </div>
+            </div>
+            <div class="dashboard-recent">
+                <h3>최근 상담 내역</h3>
+                <ul class="recent-consultations" id="recentConsultations">
+                </ul>
+            </div>
+        </section>
+
+        <section class="registration-section card">
+            <h2 id="formTitle">회원 등록</h2>
+            <form id="memberForm">
+                <input type="hidden" id="memberId" name="memberId">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">이름</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">나이</label>
+                        <input type="number" id="age" name="age" min="5" max="18" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">연락처</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="course">과정</label>
+                        <select id="course" name="course" required>
+                            <option value="">선택하세요</option>
+                            <option value="basic">기초 공부</option>
+                            <option value="intermediate">중급 공부</option>
+                            <option value="advanced">고급 공부</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="parent">보호자 성명</label>
+                    <input type="text" id="parent" name="parent" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">주소</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                <button type="submit" class="btn btn-primary">회원 등록</button>
+            </form>
+        </section>
+
+        <section class="main-content">
+            <div class="member-list-section card">
+                <h2>회원 목록</h2>
+                <div class="filter-controls">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="이름 또는 연락처로 검색...">
+                    </div>
+                    <label class="filter-toggle">
+                        <input type="checkbox" id="unpaidFilter">
+                        <span>미납만 보기</span>
+                    </label>
+                </div>
+                <ul class="member-list" id="memberList">
+                </ul>
+            </div>
+
+            <div class="member-detail-section card">
+                <h2>회원 상세 정보</h2>
+                <div id="memberDetail" class="member-detail-content">
+                    <p class="placeholder">회원을 선택하세요</p>
+                </div>
+            </div>
+
+            <div class="progress-section card">
+                <h2>📝 진도 기록</h2>
+                <div id="progressContent">
+                    <p class="placeholder">회원을 선택하세요</p>
+                </div>
+            </div>
+
+            <div class="consultation-section card">
+                <h2>💬 상담 기록</h2>
+                <div id="consultationContent">
+                    <p class="placeholder">회원을 선택하세요</p>
+                </div>
+            </div>
+
+            <div class="attendance-section card">
+                <h2>📅 출결 관리</h2>
+                <div id="attendanceContent">
+                    <p class="placeholder">회원을 선택하세요</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
